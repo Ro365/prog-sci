@@ -1,23 +1,19 @@
 # example file I/O
+from pprint import pprint
 
-# f = open("example-foods.csv","r")
-# # print([f])
-# # print(f.name, f.mode)
-# lines = f.readlines()
-# print([lines])
-# ....
-# f.close()
 
 with open("example-foods.csv","r") as f:
     lines = f.readlines()
-    print([lines])
+    print(lines)
     lines = [line.strip() for line in lines]
-    print([lines])
-    print("in context", f.closed)
-
-print("after context", f.closed)
-
-t = [2,3,4]
-print(t)
-v = [r*2 for r in t]
-print(v)
+    print(lines)
+    items = [line.split(",") for line in lines]
+    pprint(items)
+    print("fruits")
+    for item in items:
+        item[1] = int(item[1])
+        item[3] = item[3] == "yes"
+        print(item)
+    print("fruits")
+    for item in items:
+        print("name:",item[0], "  quantity:",item[1])
