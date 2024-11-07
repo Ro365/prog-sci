@@ -1,0 +1,11 @@
+## Information about APIs and billing
+
+- https://developers.google.com/maps/documentation/javascript/usage-and-billing
+
+## Information about using the maps APIs
+
+- https://developers.google.com/maps/documentation/javascript/add-google-map-wc-tut
+
+Useful Flask Template Docs
+
+https://www.digitalocean.com/community/tutorials/how-to-use-templates-in-a-flask-application
