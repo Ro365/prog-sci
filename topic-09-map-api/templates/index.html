@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Add a Map with Markers using HTML</title>
+  </head>
+  <body>
+    <H1>This is a map.</H1>
+    <gmp-map
+  center="43.4142989,-124.2301242"
+  zoom="4"
+  map-id="DEMO_MAP_ID"
+  style="height: 400px">
+  {% for marker in markers %}
+    <gmp-advanced-marker
+        position="{{ marker['position']}}"
+        title="{{ marker['position']}}"
+    ></gmp-advanced-marker>
+  {% endfor %}
+    </gmp-map>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=maps,marker&v=beta"
+    defer></script>
+  </body>
+</html>
