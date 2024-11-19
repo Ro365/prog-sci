@@ -1,32 +1,64 @@
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ohio Map</title>
-        <style>
-            #map {
-                height: 100vh;
-                width: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Map of Ohio</h1>
-        <div id="map">
-        </div>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH6AZOKnv7aBOT-avEzBtkEqkfqHiUU5E&callback=initMap"></script>
-        <script>
-            function initMap() {
-                console.log("In init_map");
-                const ohio = {lat:40.4173, lng:-82.9071};
-                const map = new google.maps.Map(
-                    document.getElementById("map"),
-                    {
-                        zoom:7,
-                        center:ohio,
-                    }
-                );
-                console.log("After new map");
-            }
-        </script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Map with Offset Label on SymbolPath Marker</title>
+    <!-- Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}"></script>
+    <style>
+      #map {
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
+    <script>
+      function initMap() {
+        // Set up the map centered onclevelandLocation =  the United States
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: {{settings["zoom"]}},
+          center: { lat:{{settings["center"]["lat"]}},
+                    lng:{{settings["center"]["lng"]}} },
+        });
+
+        const markers = [];
+        {% for marker in markers %}
+            // Create a marker with a SymbolPath and offset label
+            markers.push(new google.maps.Marker({
+            position: { lat:{{marker["position"]["lat"]}},
+                        lng:{{marker["position"]["lng"]}} },
+            map: map,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: {{marker['scale']}},
+                fillColor: "#{{marker['color']}}",  // Fill color
+                fillOpacity: 1,              // Fill opacity
+                strokeWeight: 2,             // Border thickness
+                strokeColor: "#{{marker['color']}}",      // Border color
+                labelOrigin: new google.maps.Point(0, 0), // Offset label to the right
+            },
+            label: {
+                text: "{{marker['label']['text']}}",
+                color: "#{{marker['label']['color']}}",
+                fontSize: "12px",
+                fontWeight: "bold",
+            },
+            //title: "Cleveland", // Tooltip text when hovering over the marker
+            }));
+        {% endfor %}
+        // Add an info window to display more details when the marker is clicked
+        //const infoWindow = new google.maps.InfoWindow({
+        //  content: "<h3>Cleveland</h3><p>Cleveland, Ohio</p>",
+        //});
+
+        // Show info window when the marker is clicked
+        //marker.addListener("click", () => {
+        //  infoWindow.open(map, marker);
+        //});
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <div id="map"></div>
+  </body>
 </html>

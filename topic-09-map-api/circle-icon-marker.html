@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Map with Offset Label on SymbolPath Marker</title>
+    <!-- Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcnTkSvMTBU"></script>
+    <style>
+      #map {
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
+    <script>
+      function initMap() {
+        // Set up the map centered on the United States
+        const usCenter = { lat: 37.0902, lng: -95.7129 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: usCenter,
+        });
+
+        // Define Cleveland location
+        const clevelandLocation = { lat: 41.4993, lng: -81.6944 };
+
+        // Create a marker with a SymbolPath and offset label
+        const marker = new google.maps.Marker({
+          position: clevelandLocation,
+          map: map,
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 10,                   // Size of the circle
+            fillColor: "#FF5733",        // Fill color
+            fillOpacity: 1,              // Fill opacity
+            strokeWeight: 2,             // Border thickness
+            strokeColor: "#FF0000",      // Border color
+            labelOrigin: new google.maps.Point(15, 0), // Offset label to the right
+          },
+          label: {
+            text: "Cleveland",           // Label text
+            color: "#3333FF",            // Label color matching the marker
+            fontSize: "12px",            // Font size
+            fontWeight: "bold",          // Font weight for emphasis
+          },
+          title: "Cleveland", // Tooltip text when hovering over the marker
+        });
+
+        // Add an info window to display more details when the marker is clicked
+        const infoWindow = new google.maps.InfoWindow({
+          content: "<h3>Cleveland</h3><p>Cleveland, Ohio</p>",
+        });
+
+        // Show info window when the marker is clicked
+        marker.addListener("click", () => {
+          infoWindow.open(map, marker);
+        });
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <div id="map"></div>
+  </body>
+</html>

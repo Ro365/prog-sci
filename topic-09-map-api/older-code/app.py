@@ -5,7 +5,6 @@ app = Flask(__name__)
 private = json.load(open("private.json","r"))
 
 @app.route("/")
-@app.route("/index")
 def get_index():
     return render_template("index.html",api_key=private["API_KEY"], markers = [
     {
@@ -14,7 +13,7 @@ def get_index():
     },
     {
         "position": "47.648994,-122.3503845",
-        "title":"Vancouver, BC",
+        "title":"Vancouver, BC"
         "label":{
             "text":"hello",
             "color":"white",
@@ -29,15 +28,11 @@ def get_index():
 
 @app.route("/map")
 def get_map():
-    return render_template("map.html", api_key=private["API_KEY"], settings = {"zoom":6, "center":{"lat":41.1513,"lng":-81.3578}}, markers = [{
-        "position":{"lat":41.1513,"lng":-81.3578},
-        "color":"4080FF",
-        "scale":12,
-        "label":{
-            "text":"99",
-            "color":"ffffff",
-        }
-    }])
-        
+    return render_template("map.html",api_key=private["API_KEY"])
+    
+@app.route("/example")
+def get_example():
+    return render_template("example.html")
+    
 if __name__ == "__main__":
     app.run(debug = True)
