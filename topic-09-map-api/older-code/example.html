@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Map of the United States</title>
+    <!-- Google Maps JavaScript API with API Key embedded -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcxjHH2H86JM4_rDlVM-LF1anTkSvMTBU"></script>
+    <style>
+      /* CSS to style the map container */
+      #map {
+        height: 100vh; /* Full viewport height */
+        width: 100vw; /* Full viewport width */
+      }
+    </style>
+    <script>
+      function initMap() {
+        // Set up the map centered on the United States
+        const usCenter = { lat: 37.0902, lng: -95.7129 }; // Center of the United States
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4, // Zoom level to show the whole country
+          center: usCenter,
+        });
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <!-- The div where the map will be rendered -->
+    <div id="map"></div>
+  </body>
+</html>

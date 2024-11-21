@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Map of the United States with Cleveland Marker</title>
+    <!-- Google Maps JavaScript API with API Key embedded -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyVM-LF1anTkSvMTBU"></script>
+    <style>
+      /* CSS to style the map container */
+      #map {
+        height: 100vh; /* Full viewport height */
+        width: 100vw; /* Full viewport width */
+      }
+    </style>
+    <script>
+      function initMap() {
+        // Set up the map centered on the United States
+        const usCenter = { lat: 37.0902, lng: -95.7129 }; // Center of the United States
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4, // Zoom level to show the whole country
+          center: usCenter,
+        });
+
+        // Add a marker for Cleveland, Ohio
+        const clevelandLocation = { lat: 41.4993, lng: -81.6944 }; // Coordinates for Cleveland
+        const marker = new google.maps.Marker({
+          position: clevelandLocation,
+          map: map,
+          title: "Cleveland", // Text that appears when hovering over the marker
+        });
+
+        // Add an info window to display text when the marker is clicked
+        const infoWindow = new google.maps.InfoWindow({
+          content: "<h3>Cleveland</h3><p>Cleveland, Ohio</p>",
+        });
+
+        // Show info window when the marker is clicked
+        marker.addListener("click", () => {
+          infoWindow.open(map, marker);
+        });
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <!-- The div where the map will be rendered -->
+    <div id="map"></div>
+  </body>
+</html>

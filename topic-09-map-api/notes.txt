@@ -6,6 +6,14 @@
 
 - https://developers.google.com/maps/documentation/javascript/add-google-map-wc-tut
 
-Useful Flask Template Docs
+## Information about Google Symbols
+- https://developers.google.com/maps/documentation/javascript/symbols
 
-https://www.digitalocean.com/community/tutorials/how-to-use-templates-in-a-flask-application
+
+## Useful Flask Template Docs
+
+- https://www.digitalocean.com/community/tutorials/how-to-use-templates-in-a-flask-application
+
+## Jinja template reference
+
+- https://www.geeksforgeeks.org/getting-started-with-jinja-template/
